@@ -2,9 +2,10 @@ package libreriabd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
-public class LibreriaBD {
+public class Conexion {
 
     public static void main(String[] args) {
         
@@ -15,9 +16,13 @@ public class LibreriaBD {
     public String user = "jgarciaamor";
     public String pass = "jgarciaamor";
     
+    
+       Connection link = null;
+       Statement cmd = null;
+    
+    
     public Connection Conectar(){
 
-       Connection link = null;
 
        try{
 
@@ -27,7 +32,7 @@ public class LibreriaBD {
 
        }catch(Exception ex){
 
-           JOptionPane.showMessageDialog(null, ex.getMessage());
+           System.out.println("error" + ex.getLocalizedMessage());
 
        }
 
