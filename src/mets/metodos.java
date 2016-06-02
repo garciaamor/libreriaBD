@@ -78,9 +78,9 @@ public class metodos {
     }
     
     /**
-     * Metodo para eliminar 
-     * @param nomTabla
-     * @param ID 
+     * Metodo para eliminar uno de los registros
+     * @param nomTabla  nombre de la tabla de la que quiero eliminar el registro
+     * @param ID        ID del registro que quiero eliminar
      */
     
    
