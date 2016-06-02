@@ -10,6 +10,7 @@ import java.sql.Statement;
 /**
  * Clase con los metodos necesarios para conectar, desconectar, insertar, modificar y borrar registros de la base de datos
  * @author jgarciaamor
+ * Tags en commits hechos
  */
 
 public class metodos {
