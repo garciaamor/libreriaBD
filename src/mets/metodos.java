@@ -1,29 +1,55 @@
 package mets;
 
 import java.sql.Connection;
-import libreriabd.Conexion;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
+
+
 
 public class metodos {
   
-    Conexion mysql=new Conexion();
-    java.sql.Connection cn = mysql.Conectar();
+    public static void main(String[] args) {
+        
+    }
     
-    //Conexion cc = new Conexion();
-    Connection con = mysql.Conectar();
+    Connection con=null;
+    Statement cmd = null;
     
+    /**
+     * 
+     * Metodo para conectar con la base de datos hay que cambiar los valores que recibe
+     * @param url  nombre de la base de datos
+     * @param user nombre del usuario
+     * @param pass contraseña de la base de datos
+     */
+      
     
+   public void Conectar(String url, String user, String pass){
+       
+        try{
+            Class.forName("org.gjt.mm.mysql.Driver");
+            con= (Connection) DriverManager.getConnection(url,user,pass);
+        }catch(Exception ex){
+            System.out.println("error "+ex.getLocalizedMessage());        
+        }
+        //return link;
+    }
+   /**
+    * Metodo para insertar un nuevo registro en la tabla de la base de datos
+    * @param nomTabla nombre de la tabla en la que queremos insertar el registro
+    * @param nomColum nombre de la/s columna/s que tiene la tabla
+    * @param valores valores que queremos añadir en las columnas de la tabla
+    */
     
-    public void insertar(String nomTabla, String datos, String valores){
+   
+   
+    
+    public void insertar(String nomTabla,String nomColum, String valores){
         try {
-            PreparedStatement st= con.prepareStatement("INSERT INTO "+nomTabla+" ("+datos+") VALUES("+valores+")");
+            PreparedStatement st= con.prepareStatement("INSERT INTO "+nomTabla+" ("+nomColum+") VALUES("+valores+")");
        
        st.executeUpdate();
        
@@ -31,6 +57,15 @@ public class metodos {
             System.out.println("Error al insertar "+ex.getMessage());
         }
     }
+    
+    /**
+     * Metodo para modificar un registro la tabla
+     * @param nomTabla          nombre de la tabla en la que queremos actualizar el registro
+     * @param ID                ID del registro que se va a modificar
+     * @param datosActualizar   nombre de la columna que se va a modificar
+     * @param datosNuevos       nombre del nuevo dato del registro
+     */
+    
     
     public void actualizar(String nomTabla, String ID,String datosActualizar,String datosNuevos){
         try {
@@ -41,6 +76,14 @@ public class metodos {
             System.out.println("Error al actualizar "+ex.getMessage() );
         }
     }
+    
+    /**
+     * Metodo para eliminar 
+     * @param nomTabla
+     * @param ID 
+     */
+    
+   
     public void borrar(String nomTabla, int ID){
          try {
             PreparedStatement st=con.prepareStatement("DELETE FROM " +nomTabla+" WHERE ID="+ID);
@@ -51,6 +94,14 @@ public class metodos {
             System.out.println("Error al borrar "+ex.getMessage());
         }
     }
+    
+    /**
+     * 
+     * @param nomTabla
+     * @param columnas
+     * @param datosMostrar 
+     */
+    
     
     public void consultaDatos(String nomTabla,int columnas, String datosMostrar){
        String ac="";
@@ -73,9 +124,19 @@ public class metodos {
         }
     }
     
+    /**
+     * 
+     */
     
-    
-    
+   
+    public void desconectar(){
+        try {
+            con.close();
+            //cn.close();
+        } catch (SQLException ex) {
+            System.out.println("error "+ex.getMessage());
+        }
+    }
     
     
 }
