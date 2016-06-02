@@ -96,10 +96,10 @@ public class metodos {
     }
     
     /**
-     * 
-     * @param nomTabla
-     * @param columnas
-     * @param datosMostrar 
+     * Metodo para mostrar por pantalla todos los datos de la tabla
+     * @param nomTabla      nombre de la tabla de la que quiero consultar los datos
+     * @param columnas      numero de columnas que quiero que me muestre
+     * @param datosMostrar  nombre de las columnas que quiero que me muestre
      */
     
     
@@ -125,7 +125,7 @@ public class metodos {
     }
     
     /**
-     * 
+     * Metodo para desconectar el programa de la base de datos
      */
     
    
